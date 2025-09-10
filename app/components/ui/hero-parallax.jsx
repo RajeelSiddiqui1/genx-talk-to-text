@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion, useScroll, useTransform, useSpring } from "motion/react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 export const HeroParallax = ({ products }) => {
   const firstRow = products.slice(0, 5);
@@ -28,7 +28,7 @@ export const HeroParallax = ({ products }) => {
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
+    useTransform(scrollYProgress, [0, 0.2], [0.4, 1]),
     springConfig
   );
   const rotateZ = useSpring(
@@ -36,14 +36,14 @@ export const HeroParallax = ({ products }) => {
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    useTransform(scrollYProgress, [0, 0.2], [-600, 300]),
     springConfig
   );
 
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-40 overflow-hidden relative flex flex-col bg-black text-white antialiased [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-neutral-950"
     >
       <Header />
       <motion.div
@@ -53,8 +53,8 @@ export const HeroParallax = ({ products }) => {
           translateY,
           opacity,
         }}
+        className=""
       >
-        {/* First row */}
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
           {firstRow.map((product) => (
             <ProductCard
@@ -64,9 +64,7 @@ export const HeroParallax = ({ products }) => {
             />
           ))}
         </motion.div>
-
-        {/* Second row */}
-        <motion.div className="flex flex-row mb-20 space-x-20">
+        <motion.div className="flex flex-row mb-20 space-x-20 ">
           {secondRow.map((product) => (
             <ProductCard
               product={product}
@@ -75,8 +73,6 @@ export const HeroParallax = ({ products }) => {
             />
           ))}
         </motion.div>
-
-        {/* Third row */}
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
           {thirdRow.map((product) => (
             <ProductCard
@@ -93,15 +89,18 @@ export const HeroParallax = ({ products }) => {
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full">
-      <h1 className="text-2xl md:text-7xl font-bold text-white">
-        The Ultimate <br /> Development Studio
+    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full text-center">
+      <h1 className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+        Your Voice, <br /> Instantly Transcribed.
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 text-neutral-400">
-        We build beautiful products with the latest technologies and frameworks.
-        We are a team of passionate developers and designers that love to build
-        amazing products.
+      <p className="max-w-2xl mx-auto text-base md:text-xl mt-8 text-neutral-300">
+        Experience seamless, real-time voice-to-text conversion. Perfect for
+        meetings, notes, and creative brainstorming. Start speaking, and let us
+        handle the rest.
       </p>
+      <button className="mt-8 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transition-all duration-300">
+        Try Talk To Text Free
+      </button>
     </div>
   );
 };
@@ -114,11 +113,17 @@ export const ProductCard = ({ product, translate }) => {
       }}
       whileHover={{
         y: -20,
+        scale: 1.05,
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative shrink-0 rounded-xl overflow-hidden shadow-lg shadow-neutral-900"
+      className="group/product h-96 w-[30rem] relative shrink-0 rounded-xl overflow-hidden shadow-2xl shadow-black/60"
     >
-      <a href={product.link} className="block">
+      <a
+        href={product.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block group-hover/product:shadow-2xl group-hover/product:shadow-indigo-500/50 transition-all duration-500"
+      >
         <img
           src={product.thumbnail}
           height="600"
@@ -127,10 +132,8 @@ export const ProductCard = ({ product, translate }) => {
           alt={product.title}
         />
       </a>
-      {/* Dark hover overlay */}
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black transition-opacity duration-300 pointer-events-none"></div>
-      {/* Product title */}
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white text-lg font-semibold drop-shadow-lg transition-opacity duration-300">
+      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-70 bg-black transition-all duration-300 pointer-events-none"></div>
+      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white text-xl font-bold transition-opacity duration-300">
         {product.title}
       </h2>
     </motion.div>
