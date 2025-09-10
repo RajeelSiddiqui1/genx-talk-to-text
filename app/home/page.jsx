@@ -4,7 +4,10 @@
 import React from "react";
 import { HeroParallax } from "../components/ui/hero-parallax";
 import { Devlopers } from "../components/developer";
-
+import { MaskContainer } from "../components/ui/svg-mask-effect";
+import { Testimonials } from "../components/testimonials";
+import { NavbarDemo } from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export const products = [
   {
@@ -105,9 +108,29 @@ export const products = [
 export default function Homepage() {
 
   return (
-<>
-<HeroParallax products={products} />;
-<Devlopers/>
-</>
+<div className="relative w-full  justify-center">
+<NavbarDemo/>
+<HeroParallax products={products} />
+
+<MaskContainer
+  className="bg-gradient-to-b from-black via-gray-900 to-gray-800"
+  size={50}
+  revealSize={600}
+  revealText={
+    <p className="mx-auto max-w-4xl text-center text-4xl md:text-5xl font-bold text-white px-4">
+      We’re passionate about transforming audio into text quickly and accurately. <br />
+      Our mission is to make transcription simple, secure, and accessible for all.
+    </p>
+  }
+>
+  <h1 className="text-center text-4xl md:text-6xl font-extrabold text-black px-4">
+    Experience seamless <span className="text-blue-500">audio-to-text conversion</span> with cutting-edge technology and <span className="text-blue-500">multilingual support</span>.
+  </h1>
+</MaskContainer>
+
+
+<Testimonials/>
+<Footer/>
+</div>
   );
 }

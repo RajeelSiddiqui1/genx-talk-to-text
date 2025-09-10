@@ -1,79 +1,84 @@
 "use client";
 import React from "react";
-import { Spotlight } from "../components/ui/Spotlight";
-import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
-import { LampContainer } from "../components/ui/lamp";
-import { MaskContainer } from "../components/ui/svg-mask-effect";
-import { Boxes } from "../components/ui/background-boxes";
-import { Devlopers } from "../components/developer"
+import { WobbleCard } from "../components/ui/wobble-card";
+import { BackgroundLines } from "../components/ui/background-lines";
+import { Devlopers } from "../components/developer";
+import { NavbarDemo } from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Aboutpage() {
   return (
-    <>
-      <div className="relative flex h-[40rem] w-full overflow-hidden bg-black/[0.96] antialiased md:items-center md:justify-center">
-        {/* Spotlight Effect */}
-        <Spotlight
-          className="-top-40 left-0 md:-top-20 md:left-60"
-          fill="green"
-        />
+    <div className="bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800">
+      <NavbarDemo/>
+      <BackgroundLines className="flex items-center justify-center w-full flex-col px-4">
+        <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
+          About Us <br /> Your Trusted Audio-to-Text Solution
+        </h2>
+        <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center">
+          We empower users to seamlessly convert audio to text with precision and ease. Learn more about our mission to make transcription accessible for everyone.
+        </p>
+      </BackgroundLines>
 
-        {/* Content */}
-        <div className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 text-center md:pt-0">
-          <h1 className="bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-4xl font-extrabold text-transparent md:text-7xl">
-            Upload Your Audio <br /> Get Instant Transcript
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-base font-normal text-neutral-300 md:text-lg">
-            Easily upload your audio files and get accurate transcripts. <br />
-            Change the language according to your preference with one click.
-          </p>
-
-          {/* Get Started Button */}
-          <div className="mt-8 flex justify-center">
-            <button
-              className={cn(
-                "group relative inline-flex items-center justify-center overflow-hidden rounded-lg border border-neutral-700 px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:border-cyan-500 hover:bg-cyan-500 hover:text-black"
-              )}
-            >
-              <span className="absolute inset-0 h-full w-full bg-gradient-to-br from-cyan-500/20 to-indigo-600/20 opacity-0 transition duration-300 group-hover:opacity-100" />
-              <span className="relative z-10">Get Started</span>
-            </button>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
+        <WobbleCard
+          containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px]"
+          className=""
+        >
+          <div className="max-w-xs">
+            <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+              Our Mission: Simplify Transcription
+            </h2>
+            <p className="mt-4 text-left text-base/6 text-neutral-200">
+              We’re dedicated to providing fast, accurate, and user-friendly audio-to-text solutions for students, professionals, and creators worldwide.
+            </p>
           </div>
-        </div>
+          <img
+            src="/linear.webp"
+            width={500}
+            height={500}
+            alt="audio to text demo image"
+            className="absolute -right-4 lg:-right-[40%] grayscale filter -bottom-10 object-contain rounded-2xl"
+          />
+        </WobbleCard>
+
+        <WobbleCard containerClassName="col-span-1 min-h-[300px]">
+          <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+            Secure & Organized History
+          </h2>
+          <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
+            Your transcriptions are securely stored and easily accessible, organized by date and language for a seamless user experience.
+          </p>
+        </WobbleCard>
+
+        <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px] my-3">
+          <div className="max-w-sm">
+            <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+              Why Choose Us?
+            </h2>
+            <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
+              Join thousands of users who trust our platform for secure, multilingual transcriptions. Sign up to manage your audio-to-text needs effortlessly.
+            </p>
+          </div>
+          <img
+            src="/linear.webp"
+            width={500}
+            height={500}
+            alt="about us demo image"
+            className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-10 object-contain rounded-2xl"
+          />
+        </WobbleCard>
       </div>
 
-      <LampContainer>
-        <motion.h1
-          initial={{ opacity: 0.5, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
-        >
-          Build lamps <br /> the right way
-        </motion.h1>
-      </LampContainer>
+    <Devlopers/>
+    <Footer/>
+    </div>
+  );
+}
 
-      <MaskContainer
-        revealText={
-          <p className="mx-auto max-w-4xl text-center text-4xl font-bold text-white">
-            The first rule of MRR Club is you do not talk about MRR Club. <br />
-            The second rule of MRR Club is you DO NOT talk about MRR Club.
-          </p>
-        }
-      >
-        Discover the power of{" "}
-        <span className="text-blue-500">Tailwind CSS v4</span> with native CSS
-        variables and container queries with{" "}
-        <span className="text-blue-500">advanced animations</span>.
-      </MaskContainer>
-
-        <Devlopers />
-   
-
-    </>
+function SkeletonSection() {
+  return (
+    <div className="w-full py-16 bg-gray-800 animate-pulse">
+      <div className="max-w-4xl mx-auto h-40 bg-gray-700 rounded-lg" />
+    </div>
   );
 }
