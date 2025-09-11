@@ -32,7 +32,7 @@ export function LoginDemo() {
         setMessage("Login successfully ✅");
         setSeverity("success");
         setOpen(true);
-        setTimeout(() => router.push("/home"), 1500); // redirect after 1.5s
+        setTimeout(() => router.push("/home"), 1500); 
       }
     } catch (error) {
       setMessage("Login failed ❌");
